@@ -10,7 +10,9 @@ Make sure to follow the instructions in the docker-compose file to edit the appr
 `docker compose up -d` <br />
 I recommend you use a container orchestration technology if you plan on using this project as a template for production. Docker swarm is able to use docker-compose files using the following command:<br />
 `docker network create -d overlay test-network && docker stack deploy --compose-file docker-compose.yml test-network` <br />
-## Issues in Production
+## Issues and Considerations
 <b>**This deployment is not recommended for public use. Note the following issues with using this repository in production**</b>
 - Caddy container is running as root
 - Vaultwarden container is running as root
+- Several offline backups should be taken and stored securely 
+- 24/7 Availability should be ensured when self-hosting your own password manager
