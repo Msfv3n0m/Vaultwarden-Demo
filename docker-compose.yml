@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: always
+    environment:
+      WEBSOCKET_ENABLED: "true"                                           # Enable WebSocket notifications.
+      ADMIN_TOKEN=""                                                      # Run `openssl rand -base64 48` to generate an admin token and put that string here
+      SIGNUPS_ALLOWED: "false"                                            # Are other people allowed to sign up for accounts on your vaultwarden instance?
+      SMTP_HOST=<smtp_host>                                               # The host from which the email will be sent
+      SMTP_FROM=<sender_address>                                          # Create an email account and put the username here so vaultwarden can send emails using this account
+      SMTP_PORT=587                                                       # Port used to send email
+      SMTP_SSL=true                                                       # Encrypt email 
+      SMTP_USERNAME=<sender_username>                                     # Email sender username
+      SMTP_PASSWORD=<sender_password>                                     # Email password
+    volumes:
+      - ./vw-data:/data
+
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    restart: always
+    ports:
+      - 80:80  
+      - 443:443
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy-config:/config
+      - ./caddy-data:/data
+    environment:
+      DOMAIN: "https://pman-vw.duckdns.org"  # Your domain.
+      EMAIL: ""                                                            # The email address to use for ACME registration.
+      DUCKDNS_TOKEN: ""                                                    # Your account token from duckdns.org
+      LOG_FILE: "/data/access.log"                                             
