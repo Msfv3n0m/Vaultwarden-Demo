@@ -5,6 +5,7 @@ This project assumes that you have the following:
 - Docker installed: Follow [this](https://docs.docker.com/get-docker/) tutorial if you do not have this requirement fulfilled
 - caddy binary in your working directory: To work with this repository, you must install caddy [here](https://caddyserver.com/download). Include your platform and the DuckDNS plugin in your binary
 - firewall rules that allow ingress traffic to ports 80/443 
+- you should also have a duckdns account with your account's admin token
 ## Usage
 Make sure to follow the instructions in the docker-compose file to edit the appropriate labels. For a quick instance using docker compose, run the following command: <br />
 `docker compose up -d` <br />
