@@ -17,3 +17,7 @@ I recommend you use a container orchestration technology if you plan on using th
 - Vaultwarden container is running as root
 - Several offline backups should be taken and stored securely 
 - 24/7 Availability should be ensured when self-hosting your own password manager
+## Development Ideas
+- translate this project such that it can be used with podman. This would allow the containers to be run under a user's namespace (as opposed to root) which is more secure
+- incorporate dockerfiles to allow the containers to be run as a user (inside the container)
+- create distroless images to reduce the attack surface of the containers 
